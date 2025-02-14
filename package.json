@@ -9,19 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.11.1",
+    "@fal-ai/client": "^1.2.3",
+    "@uploadcare/react-uploader": "^1.4.0",
+    "@uploadcare/upload-client": "^6.14.2",
+    "cloudinary": "^2.5.1",
+    "framer-motion": "^12.4.1",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.10.0",
+    "next": "15.1.6",
+    "next-cloudinary": "^6.16.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.6"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
