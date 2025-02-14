@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Video Transformation Tool
 
-## Getting Started
+A Next.js application for uploading and transforming videos using AI-powered processing.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🔐 User authentication with Clerk
+- 📤 Video upload to Cloudinary
+- 🤖 AI-powered video transformation with fal.ai
+- 📥 Processed video storage and retrieval
+- 📊 Video metadata management with MongoDB
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/video-transformation-tool.git
+   cd video-transformation-tool
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file with the following variables:
+   ```
+   NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   MONGODB_URI=your_mongodb_uri
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_key
+   CLERK_SECRET_KEY=your_clerk_secret
+   FAL_API_KEY=your_fal_api_key
+   ```
+
+## Usage
+
+1. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+2. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+3. Sign in to access the video transformation features
+
+## API Endpoints
+
+### POST /api/upload
+Upload a video to Cloudinary
+
+**Request Body:**
+```json
+{
+  "videoUrl": "https://example.com/video.mp4"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Response:**
+```json
+{
+  "url": "https://res.cloudinary.com/.../video.mp4",
+  "publicId": "uploaded_videos/..."
+}
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### POST /api/process-video
+Process a video with AI transformation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Request Body:**
+```json
+{
+  "videoUrl": "https://res.cloudinary.com/.../video.mp4",
+  "prompt": "Transform this video into a cartoon style",
+  "fileName": "example.mp4"
+}
+```
 
-## Learn More
+**Response:**
+```json
+{
+  "message": "Processing started",
+  "requestId": "12345"
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+### POST /api/webhook
+Webhook endpoint for processed video notifications
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Request Body:**
+```json
+{
+  "video_url": "https://processed.video.mp4",
+  "requestId": "12345"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies
 
-## Deploy on Vercel
+- [Next.js](https://nextjs.org/) - React framework
+- [Cloudinary](https://cloudinary.com/) - Video storage and processing
+- [MongoDB](https://www.mongodb.com/) - Database for video metadata
+- [Clerk](https://clerk.dev/) - User authentication
+- [fal.ai](https://fal.ai/) - AI video processing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
